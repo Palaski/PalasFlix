@@ -1,0 +1,19 @@
+{
+  "id": "palasflix.tizenbrew.stremio-lite",
+  "name": "TizenBrew Stremio Lite",
+  "version": "0.1.1",
+  "description": "Módulo experimental para Tizen 9 com interface de catálogo e integração debrid (uso legal).",
+  "author": "Palaski",
+  "type": "webapp",
+  "platform": "tizen",
+  "minPlatformVersion": "9.0",
+  "entry": "tizenbrew-stremio-lite/index.html",
+  "icon": "tizenbrew-stremio-lite/assets/icon.svg",
+  "repository": "https://github.com/Palaski/PalasFlix",
+  "keywords": [
+    "tizenbrew",
+    "tizen",
+    "streaming",
+    "debrid"
+  ]
+}
