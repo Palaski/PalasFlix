@@ -20,5 +20,10 @@ No TizenBrew, use **Install from GitHub** e informe:
 
 ## Solução para erros comuns
 
-- **Unknown module**: geralmente acontece quando o loader não reconhece os campos do manifesto; por isso o módulo agora usa `app/` + `main`.
-- **Crash após instalar**: atualize o TizenBrew para a versão mais recente e reinstale.
+- **Unknown module**: normalmente indica que o loader não encontrou um `package.json` válido na raiz.
+- **Crash após instalar**: atualize o TizenBrew para a versão mais recente e reinstale o módulo.
+- **Teclas multimídia não respondem**: confira se a TV/firmware está enviando os eventos e se as teclas listadas em `package.json` estão registradas.
+
+## Observações
+
+- Este módulo é para uso com conteúdo legalmente acessível pela sua conta.
