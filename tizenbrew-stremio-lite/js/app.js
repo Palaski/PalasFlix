@@ -68,6 +68,7 @@ function handleClosePlayer() {
   if (!playerPanel.hidden) {
     playerPanel.hidden = true;
   }
+  playerPanel.hidden = true;
 }
 
 function setupTizenRemoteSupport() {
@@ -90,6 +91,9 @@ function setupTizenRemoteSupport() {
       if (!videoElement.hidden) {
         videoElement.pause();
         videoElement.currentTime = 0;
+    Escape: () => {
+      if (!playerPanel.hidden) {
+        handleClosePlayer();
       }
     }
   };
@@ -99,6 +103,8 @@ function setupTizenRemoteSupport() {
     const handler = keyMap[remoteKey];
     if (handler) {
       event.preventDefault();
+    const handler = keyMap[event.key];
+    if (handler) {
       handler();
     }
   });
