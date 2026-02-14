@@ -1,19 +1,30 @@
-# PalasFlix – TizenBrew Stremio Lite
+# PalasFlix – módulo app para TizenBrew
 
-Este repositório agora inclui metadados de módulo no **root** para melhorar compatibilidade com a opção **Instalar de GitHub** no TizenBrew e evitar identificação como `Unknown module`.
+Este repositório segue o formato oficial de **Application Module** do TizenBrew usando `package.json` na raiz.
 
-## Arquivos de compatibilidade (root)
+## Estrutura esperada pelo TizenBrew
 
-- `module.json` → manifesto principal do módulo
-- `manifest.json` → ponteiro para `module.json`
-- `tizenbrew-module.json` → alias de descoberta para loaders alternativos
+- `package.json` com:
+  - `packageType: "app"`
+  - `appName`
+  - `appPath`
+  - `keys`
+  - `serviceFile`
+- `service.js` (serviço Node do módulo)
+- app web em `tizenbrew-stremio-lite/index.html`
 
-## Código do módulo
+## Instalação via GitHub no TizenBrew
 
-O código do app está em:
+No TizenBrew, use **Install from GitHub** e informe:
 
-- `tizenbrew-stremio-lite/`
+`Palaski/PalasFlix`
 
-## Observação importante
+## Solução para erros comuns
 
-Se sua versão do TizenBrew ainda mostrar `Unknown module`, pode haver incompatibilidade da versão do instalador com o formato de manifesto aceito por aquela build específica. Neste caso, atualize o TizenBrew e tente novamente.
+- **Unknown module**: normalmente indica que o loader não encontrou um `package.json` válido na raiz.
+- **Crash após instalar**: atualize o TizenBrew para a versão mais recente e reinstale o módulo.
+- **Teclas multimídia não respondem**: confira se a TV/firmware está enviando os eventos e se as teclas listadas em `package.json` estão registradas.
+
+## Observações
+
+- Este módulo é para uso com conteúdo legalmente acessível pela sua conta.

@@ -20,6 +20,22 @@ const providers = {
 let activeMedia = null;
 let activeStreams = [];
 
+function normalizeRemoteKey(event) {
+  const keyByCode = {
+    10009: 'Return',
+    19: 'MediaPause',
+    415: 'MediaPlay',
+    413: 'MediaStop',
+    10252: 'MediaPlayPause'
+  };
+
+  if (event.key && event.key !== 'Unidentified') {
+    return event.key;
+  }
+
+  return keyByCode[event.keyCode] || '';
+}
+
 async function handleItemSelect(media) {
   activeMedia = media;
   playerTitle.textContent = media.title;
@@ -49,11 +65,32 @@ function handlePlay() {
 }
 
 function handleClosePlayer() {
+  if (!playerPanel.hidden) {
+    playerPanel.hidden = true;
+  }
   playerPanel.hidden = true;
 }
 
 function setupTizenRemoteSupport() {
   const keyMap = {
+    Escape: handleClosePlayer,
+    Return: handleClosePlayer,
+    MediaPlayPause: () => {
+      if (videoElement.hidden) {
+        return;
+      }
+      if (videoElement.paused) {
+        videoElement.play();
+      } else {
+        videoElement.pause();
+      }
+    },
+    MediaPlay: () => !videoElement.hidden && videoElement.play(),
+    MediaPause: () => !videoElement.hidden && videoElement.pause(),
+    MediaStop: () => {
+      if (!videoElement.hidden) {
+        videoElement.pause();
+        videoElement.currentTime = 0;
     Escape: () => {
       if (!playerPanel.hidden) {
         handleClosePlayer();
@@ -62,6 +99,10 @@ function setupTizenRemoteSupport() {
   };
 
   window.addEventListener('keydown', (event) => {
+    const remoteKey = normalizeRemoteKey(event);
+    const handler = keyMap[remoteKey];
+    if (handler) {
+      event.preventDefault();
     const handler = keyMap[event.key];
     if (handler) {
       handler();
