@@ -15,12 +15,10 @@ Este app usa o formato oficial **Application Module** do TizenBrew via `package.
 ## Recursos implementados
 
 - Home com seções: **Destaques**, **Novidades**, **Em alta**.
-- Cards navegáveis por controle remoto (foco e clique).
-- Modal de seleção de fonte de stream.
-- Abstração de provider para debrid:
-  - `MockDebridProvider` (demo local)
-  - `RealDebridProvider` (consulta API com token)
-- Fallback automático para mock quando API estiver indisponível.
+- Cards em grade com clique para abrir fonte.
+- Modal de seleção de stream.
+- Fallback automático de RealDebrid para provider mock.
+- Atalhos de controle remoto para Return/Play/Pause/Stop/PlayPause.
 
 ## Estrutura
 
@@ -42,7 +40,6 @@ tizenbrew-stremio-lite/
 
 1. Instale via GitHub no TizenBrew com `Palaski/PalasFlix`.
 2. Configure token (opcional):
-   - Abra o app no Web Inspector e execute:
    ```js
    localStorage.setItem('REAL_DEBRID_TOKEN', 'SEU_TOKEN_AQUI');
    ```
