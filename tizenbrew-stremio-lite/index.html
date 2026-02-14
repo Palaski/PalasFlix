@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=1920, height=1080, user-scalable=no" />
+  <title>TizenBrew Stremio Lite</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="hero" id="hero"></header>
+
+  <main id="rows" class="rows" aria-live="polite"></main>
+
+  <section class="player-panel" id="player-panel" hidden>
+    <div class="player-panel__content">
+      <h2 id="player-title"></h2>
+      <p id="player-description"></p>
+      <label for="source-select">Fonte de debrid:</label>
+      <select id="source-select"></select>
+      <button id="play-button">Reproduzir</button>
+      <button id="close-player">Fechar</button>
+    </div>
+  </section>
+
+  <video id="video" controls hidden></video>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
