@@ -1,19 +1,18 @@
 # PalasFlix – módulo app para TizenBrew
 
-Este repositório segue o formato oficial de **Application Module** do TizenBrew usando `package.json` na raiz.
+Este repositório segue o formato de **Application Module** do TizenBrew com `package.json` na raiz.
 
-## Estrutura esperada pelo TizenBrew
+## Ajuste importante para compatibilidade
 
-- `package.json` com:
-  - `packageType: "app"`
-  - `appName`
-  - `appPath`
-  - `keys`
-  - `serviceFile`
-- `service.js` (serviço Node do módulo)
-- app web em `tizenbrew-stremio-lite/index.html`
+Para ficar mais próximo dos módulos de referência, o app web foi colocado em `app/` e o `package.json` agora aponta para:
 
-## Instalação via GitHub no TizenBrew
+- `appPath: "app/index.html"`
+- `serviceFile: "./service.js"`
+- `main: "service.js"` (fallback de compatibilidade para loaders que leem `main`)
+
+Também mantive o código original em `tizenbrew-stremio-lite/` para facilitar desenvolvimento, mas o loader deve usar `app/`.
+
+## Instalação via GitHub
 
 No TizenBrew, use **Install from GitHub** e informe:
 
