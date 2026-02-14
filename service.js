@@ -1,6 +1,6 @@
 /**
  * Serviço Node do módulo TizenBrew.
- * Mantido mínimo para compatibilidade com o loader de módulos app.
+ * Expõe múltiplos nomes de lifecycle para compatibilidade entre versões do loader.
  */
 
 function log(...args) {
@@ -8,14 +8,24 @@ function log(...args) {
 }
 
 function init() {
-  log('service initialized');
+  log('init');
 }
 
 function shutdown() {
-  log('service shutdown');
+  log('shutdown');
+}
+
+function onStart() {
+  log('onStart');
+}
+
+function onStop() {
+  log('onStop');
 }
 
 module.exports = {
   init,
-  shutdown
+  shutdown,
+  onStart,
+  onStop
 };

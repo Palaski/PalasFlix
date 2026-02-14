@@ -2,15 +2,13 @@
 
 Este repositório segue o formato de **Application Module** do TizenBrew com `package.json` na raiz.
 
-## Ajuste importante para compatibilidade
+## Ajustes de compatibilidade aplicados
 
-Para ficar mais próximo dos módulos de referência, o app web foi colocado em `app/` e o `package.json` agora aponta para:
+Para evitar caso em que instala mas não abre:
 
-- `appPath: "app/index.html"`
-- `serviceFile: "./service.js"`
-- `main: "service.js"` (fallback de compatibilidade para loaders que leem `main`)
-
-Também mantive o código original em `tizenbrew-stremio-lite/` para facilitar desenvolvimento, mas o loader deve usar `app/`.
+- `appPath` aponta para `index.html` na raiz.
+- `index.html` da raiz redireciona para `app/index.html`.
+- `service.js` expõe múltiplos lifecycles (`init/shutdown/onStart/onStop`) para compatibilidade entre loaders.
 
 ## Instalação via GitHub
 
@@ -18,12 +16,10 @@ No TizenBrew, use **Install from GitHub** e informe:
 
 `Palaski/PalasFlix`
 
+Depois de instalar, reinicie o TizenBrew e abra **PalasFlix Stremio Lite**.
+
 ## Solução para erros comuns
 
-- **Unknown module**: normalmente indica que o loader não encontrou um `package.json` válido na raiz.
-- **Crash após instalar**: atualize o TizenBrew para a versão mais recente e reinstale o módulo.
-- **Teclas multimídia não respondem**: confira se a TV/firmware está enviando os eventos e se as teclas listadas em `package.json` estão registradas.
-
-## Observações
-
-- Este módulo é para uso com conteúdo legalmente acessível pela sua conta.
+- **Unknown module**: loader não reconheceu metadados do `package.json`.
+- **Instala, mas não abre**: normalmente `appPath` incompatível com a versão do loader. Esta versão usa `index.html` na raiz para evitar esse problema.
+- **Crash após instalar**: atualize o TizenBrew para a versão mais recente e reinstale.
