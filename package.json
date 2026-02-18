@@ -1,10 +1,10 @@
 {
   "name": "palasflix-tizenbrew-stremio-lite",
-  "version": "0.3.1",
-  "description": "Módulo app para TizenBrew com catálogo em grade e integração debrid para uso legal.",
+  "version": "0.4.0",
+  "description": "Módulo app para TizenBrew com frontend de catálogo mockado e estrutura estável de abertura.",
   "packageType": "app",
   "appName": "PalasFlix Stremio Lite",
-  "appPath": "index.html",
+  "appPath": "app/index.html",
   "keys": [
     "ArrowUp",
     "ArrowDown",

@@ -1,25 +1,27 @@
 # PalasFlix – módulo app para TizenBrew
 
-Este repositório segue o formato de **Application Module** do TizenBrew com `package.json` na raiz.
+Módulo no formato oficial `packageType: "app"` para TizenBrew, com frontend básico funcionando para validação de abertura na TV.
 
-## Ajustes de compatibilidade aplicados
+## O que foi simplificado para garantir abertura
 
-Para evitar caso em que instala mas não abre:
+- App frontend único em `app/`.
+- Script frontend em JS clássico (`app/app.js`), sem `type="module"`.
+- Catálogo mockado com abas e cards clicáveis.
+- Painel de detalhes com botão de play mock.
 
-- `appPath` aponta para `index.html` na raiz.
-- `index.html` da raiz redireciona para `app/index.html`.
-- `service.js` expõe múltiplos lifecycles (`init/shutdown/onStart/onStop`) para compatibilidade entre loaders.
+## Instalação
 
-## Instalação via GitHub
+1. No TizenBrew: **Install from GitHub**.
+2. Informe: `Palaski/PalasFlix`.
+3. Reinicie o TizenBrew após instalar.
+4. Abra **PalasFlix Stremio Lite**.
 
-No TizenBrew, use **Install from GitHub** e informe:
+## Metadados importantes
 
-`Palaski/PalasFlix`
+- `appPath`: `app/index.html`
+- `serviceFile`: `service.js`
+- `main`: `service.js`
 
-Depois de instalar, reinicie o TizenBrew e abra **PalasFlix Stremio Lite**.
+## Próximos passos
 
-## Solução para erros comuns
-
-- **Unknown module**: loader não reconheceu metadados do `package.json`.
-- **Instala, mas não abre**: normalmente `appPath` incompatível com a versão do loader. Esta versão usa `index.html` na raiz para evitar esse problema.
-- **Crash após instalar**: atualize o TizenBrew para a versão mais recente e reinstale.
+Depois de validar abertura/UI, a próxima etapa é reconectar camada de debrid/player sobre esta base estável.
