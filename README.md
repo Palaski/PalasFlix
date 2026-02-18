@@ -1,27 +1,24 @@
 # PalasFlix – módulo app para TizenBrew
 
-Módulo no formato oficial `packageType: "app"` para TizenBrew, com frontend básico funcionando para validação de abertura na TV.
+Refatoração focada em **abrir com confiabilidade** no TizenBrew.
 
-## O que foi simplificado para garantir abertura
+## O que foi feito para máxima compatibilidade
 
-- App frontend único em `app/`.
-- Script frontend em JS clássico (`app/app.js`), sem `type="module"`.
-- Catálogo mockado com abas e cards clicáveis.
-- Painel de detalhes com botão de play mock.
+- `appPath` agora aponta para **`index.html` na raiz**.
+- `index.html` é autossuficiente (HTML + CSS + JS inline), sem import de módulos.
+- UI mínima pronta ao abrir:
+  - abas (`Destaques`, `Novidades`, `Em alta`)
+  - catálogo mockado em grade
+  - painel de detalhes
+- `service.js` expõe múltiplos nomes de lifecycle (`init/shutdown/onStart/onStop/start/stop`).
 
 ## Instalação
 
-1. No TizenBrew: **Install from GitHub**.
-2. Informe: `Palaski/PalasFlix`.
-3. Reinicie o TizenBrew após instalar.
-4. Abra **PalasFlix Stremio Lite**.
+1. TizenBrew → **Install from GitHub**
+2. Digite: `Palaski/PalasFlix`
+3. Reinicie o TizenBrew
+4. Abra **PalasFlix Stremio Lite**
 
-## Metadados importantes
+## Observação
 
-- `appPath`: `app/index.html`
-- `serviceFile`: `service.js`
-- `main`: `service.js`
-
-## Próximos passos
-
-Depois de validar abertura/UI, a próxima etapa é reconectar camada de debrid/player sobre esta base estável.
+Após validar que abre e renderiza UI, a próxima etapa é reintroduzir integração debrid/player de forma incremental.
