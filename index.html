@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=1920, height=1080, user-scalable=no" />
+  <title>PalasFlix Stremio Lite</title>
+  <style>
+    :root { --bg:#0c1018; --panel:#171d2a; --text:#eef2ff; --muted:#9ca7bd; --accent:#e50914; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--bg); color:var(--text); font-family:Arial,sans-serif; min-height:100vh; }
+    header { display:flex; align-items:center; justify-content:space-between; padding:20px 28px; border-bottom:1px solid #222b3f; }
+    h1 { margin:0; color:var(--accent); }
+    .tabs { display:flex; gap:10px; flex-wrap:wrap; }
+    .tab { border:1px solid #2e3954; background:#1a2233; color:var(--text); border-radius:999px; padding:8px 14px; }
+    .tab.active { border-color:var(--accent); }
+    .hero { margin:18px 28px; border-radius:14px; padding:22px; background:radial-gradient(circle at 80% 0%, #3b2f63 0%, #222a3d 45%, #171d2a 100%); }
+    .badge { display:inline-block; background:#2b3650; border-radius:999px; padding:4px 8px; font-size:12px; margin-bottom:8px; }
+    .hero h2 { margin:0 0 8px; font-size:34px; }
+    .hero p { margin:0; color:var(--muted); max-width:900px; }
+    main { padding:0 28px 24px; }
+    main h3 { margin:0 0 10px; }
+    .grid { display:grid; gap:12px; grid-template-columns:repeat(5,minmax(0,1fr)); }
+    .card { border:1px solid #2d3852; border-radius:12px; background:var(--panel); color:var(--text); text-align:left; padding:12px; min-height:170px; }
+    .card .meta { color:var(--muted); font-size:14px; margin:0 0 8px; }
+    .card p { margin:0; font-size:14px; color:#c6d0e0; }
+    .card h4 { margin:0 0 8px; font-size:18px; }
+    .details { position:fixed; right:20px; bottom:20px; width:min(640px,90vw); background:#121827; border:1px solid #394867; border-radius:14px; padding:14px; }
+    .details[hidden] { display:none; }
+    .actions { display:flex; gap:10px; }
+    .btn { border:1px solid #31405f; border-radius:8px; background:#1e2840; color:var(--text); padding:8px 12px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>PalasFlix</h1>
+    <nav id="tabs" class="tabs"></nav>
+  </header>
+
+  <section id="hero" class="hero"></section>
+
+  <main>
+    <h3 id="section-title"></h3>
+    <section id="grid" class="grid"></section>
+  </main>
+
+  <aside id="details" class="details" hidden>
+    <h3 id="details-title"></h3>
+    <p id="details-meta" class="meta"></p>
+    <p id="details-overview"></p>
+    <div class="actions">
+      <button id="play-btn" class="btn" type="button">▶ Reproduzir (mock)</button>
+      <button id="close-btn" class="btn" type="button">Fechar</button>
+    </div>
+  </aside>
+
+  <script>
+    (function () {
+      var sections = {
+        'Destaques': [
+          { title:'Duna: Parte Dois', year:2024, genre:'Sci-Fi', overview:'Conflito político em Arrakis.' },
+          { title:'Blade Runner 2049', year:2017, genre:'Sci-Fi', overview:'Segredos de um futuro distópico.' },
+          { title:'Oppenheimer', year:2023, genre:'Drama', overview:'Decisões que mudaram o mundo.' }
+        ],
+        'Novidades': [
+          { title:'Furiosa', year:2024, genre:'Ação', overview:'Origem de uma guerreira no deserto.' },
+          { title:'Rivais', year:2024, genre:'Drama', overview:'Relações intensas no circuito de tênis.' },
+          { title:'Civil War', year:2024, genre:'Guerra', overview:'Jornalistas em um país fragmentado.' }
+        ],
+        'Em alta': [
+          { title:'John Wick 4', year:2023, genre:'Ação', overview:'Confronto global contra a Alta Cúpula.' },
+          { title:'Top Gun: Maverick', year:2022, genre:'Ação', overview:'Missão impossível para pilotos de elite.' },
+          { title:'The Batman', year:2022, genre:'Crime', overview:'Mistério e corrupção em Gotham.' }
+        ]
+      };
+
+      var activeSection = Object.keys(sections)[0];
+      var activeItem = null;
+
+      var tabsEl = document.getElementById('tabs');
+      var heroEl = document.getElementById('hero');
+      var sectionTitleEl = document.getElementById('section-title');
+      var gridEl = document.getElementById('grid');
+      var detailsEl = document.getElementById('details');
+      var detailsTitleEl = document.getElementById('details-title');
+      var detailsMetaEl = document.getElementById('details-meta');
+      var detailsOverviewEl = document.getElementById('details-overview');
+
+      function openDetails(item) {
+        activeItem = item;
+        detailsTitleEl.textContent = item.title;
+        detailsMetaEl.textContent = item.year + ' • ' + item.genre;
+        detailsOverviewEl.textContent = item.overview;
+        detailsEl.hidden = false;
+      }
+
+      function renderTabs() {
+        tabsEl.innerHTML = '';
+        Object.keys(sections).forEach(function (name) {
+          var button = document.createElement('button');
+          button.type = 'button';
+          button.className = 'tab' + (name === activeSection ? ' active' : '');
+          button.textContent = name;
+          button.addEventListener('click', function () {
+            activeSection = name;
+            detailsEl.hidden = true;
+            render();
+          });
+          tabsEl.appendChild(button);
+        });
+      }
+
+      function renderHero() {
+        var featured = sections[activeSection][0];
+        heroEl.innerHTML = '<span class="badge">Destaque</span>' +
+          '<h2>' + featured.title + ' (' + featured.year + ')</h2>' +
+          '<p>' + featured.overview + '</p>';
+      }
+
+      function renderGrid() {
+        sectionTitleEl.textContent = activeSection;
+        gridEl.innerHTML = '';
+        sections[activeSection].forEach(function (item) {
+          var card = document.createElement('button');
+          card.type = 'button';
+          card.className = 'card';
+          card.innerHTML = '<h4>' + item.title + '</h4>' +
+            '<p class="meta">' + item.year + ' • ' + item.genre + '</p>' +
+            '<p>' + item.overview + '</p>';
+          card.addEventListener('click', function () { openDetails(item); });
+          gridEl.appendChild(card);
+        });
+      }
+
+      document.getElementById('play-btn').addEventListener('click', function () {
+        if (!activeItem) return;
+        alert('Mock play: ' + activeItem.title);
+      });
+
+      document.getElementById('close-btn').addEventListener('click', function () {
+        detailsEl.hidden = true;
+      });
+
+      window.addEventListener('keydown', function (event) {
+        if (event.key === 'Return' || event.key === 'Escape' || event.keyCode === 10009) {
+          if (!detailsEl.hidden) {
+            detailsEl.hidden = true;
+            event.preventDefault();
+          }
+        }
+      });
+
+      function render() {
+        renderTabs();
+        renderHero();
+        renderGrid();
+      }
+
+      render();
+    })();
+  </script>
+</body>
+</html>
