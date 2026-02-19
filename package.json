@@ -1,24 +1,9 @@
 {
-  "name": "palasflix-tizenbrew-stremio-lite",
-  "version": "0.5.0",
-  "description": "Módulo app para TizenBrew com frontend básico mockado e entrypoint único na raiz.",
+  "name": "palasflix-simple",
+  "version": "1.0.0",
   "packageType": "app",
-  "appName": "PalasFlix Stremio Lite",
+  "appName": "PalasFlix",
   "appPath": "index.html",
-  "keys": [
-    "ArrowUp",
-    "ArrowDown",
-    "ArrowLeft",
-    "ArrowRight",
-    "Enter",
-    "Return",
-    "MediaPlayPause",
-    "MediaPlay",
-    "MediaPause",
-    "MediaStop"
-  ],
   "serviceFile": "service.js",
-  "main": "service.js",
-  "author": "Palaski",
-  "license": "MIT"
+  "keys": ["Enter", "Return", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"]
 }
