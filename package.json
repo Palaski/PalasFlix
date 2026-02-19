@@ -1,0 +1,9 @@
+{
+  "name": "palasflix-simple",
+  "version": "1.0.0",
+  "packageType": "app",
+  "appName": "PalasFlix",
+  "appPath": "index.html",
+  "serviceFile": "service.js",
+  "keys": ["Enter", "Return", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"]
+}
