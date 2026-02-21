@@ -1,0 +1,10 @@
+body { margin:0; background:#0b0f19; color:#fff; font-family:Arial,sans-serif; }
+header { display:flex; justify-content:space-between; padding:16px 20px; border-bottom:1px solid #222; }
+h1 { margin:0; color:#e50914; }
+#tabs { display:flex; gap:8px; }
+.tab { background:#1d2433; border:1px solid #333f58; color:#fff; border-radius:999px; padding:8px 12px; }
+.tab.active { border-color:#e50914; }
+#hero { margin:16px 20px; padding:18px; background:#1a2233; border-radius:12px; }
+main { padding:0 20px 20px; }
+#grid { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; }
+.card { background:#171e2b; border:1px solid #2d3750; border-radius:10px; padding:10px; color:#fff; text-align:left; }
