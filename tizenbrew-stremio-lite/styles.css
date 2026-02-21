@@ -1,0 +1,134 @@
+:root {
+  --bg: #0b0c0f;
+  --surface: #151720;
+  --text: #f5f5f7;
+  --muted: #b9bdd0;
+  --accent: #e50914;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Inter, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+.hero {
+  min-height: 42vh;
+  padding: 52px 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background: linear-gradient(180deg, rgba(0,0,0,.15) 0%, rgba(11,12,15,.95) 100%),
+    radial-gradient(circle at top right, #3a3f68, #10131d 60%);
+}
+
+.hero h1 {
+  font-size: 46px;
+  margin-bottom: 12px;
+}
+
+.hero p {
+  max-width: 900px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.rows {
+  padding: 18px 36px 60px;
+}
+
+.row {
+  margin-top: 26px;
+}
+
+.row h2 {
+  margin: 0 0 12px 12px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
+}
+
+.card {
+  background: var(--surface);
+  border-radius: 12px;
+  padding: 12px;
+  min-height: 165px;
+  border: 2px solid transparent;
+  transition: transform .15s ease, border-color .15s ease;
+}
+
+.card:focus,
+.card:hover {
+  transform: scale(1.03);
+  border-color: var(--accent);
+  outline: none;
+}
+
+.card__title {
+  font-size: 18px;
+  margin-bottom: 7px;
+}
+
+.card__meta {
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 9px;
+}
+
+.badge {
+  display: inline-block;
+  background: #2a3040;
+  border-radius: 999px;
+  padding: 4px 8px;
+  font-size: 12px;
+}
+
+.player-panel {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: grid;
+  place-items: center;
+}
+
+.player-panel__content {
+  width: min(800px, 90vw);
+  background: #171a24;
+  border-radius: 16px;
+  padding: 24px;
+  display: grid;
+  gap: 12px;
+}
+
+button,
+select {
+  background: #252b3c;
+  color: var(--text);
+  border: 1px solid #3a4158;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+button:hover,
+button:focus {
+  border-color: var(--accent);
+}
+
+#video {
+  position: fixed;
+  inset: auto 24px 24px auto;
+  width: 40vw;
+  border: 2px solid #39415d;
+  border-radius: 12px;
+  background: #000;
+}

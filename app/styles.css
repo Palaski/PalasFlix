@@ -1,0 +1,110 @@
+:root {
+  --bg: #0d1016;
+  --surface: #171b24;
+  --surface-2: #1d2430;
+  --text: #f2f4f8;
+  --muted: #9da7b8;
+  --accent: #e50914;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, sans-serif;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 28px;
+  background: #0a0d12;
+  border-bottom: 1px solid #222938;
+}
+
+.topbar h1 { margin: 0; color: var(--accent); }
+
+.tabs { display: flex; gap: 10px; }
+
+.tab {
+  border: 1px solid #2a3142;
+  background: #1a2130;
+  color: var(--text);
+  border-radius: 999px;
+  padding: 8px 14px;
+}
+
+.tab.active,
+.tab:focus,
+.tab:hover { border-color: var(--accent); }
+
+.hero {
+  margin: 20px 28px;
+  padding: 26px;
+  border-radius: 14px;
+  background: radial-gradient(circle at 80% 0%, #40316d 0%, #222737 45%, #171b24 100%);
+}
+
+.hero .badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  background: #2f3750;
+  margin-bottom: 10px;
+}
+
+.hero h2 { margin: 0 0 8px; font-size: 34px; }
+.hero p { margin: 0; color: var(--muted); max-width: 900px; }
+
+.catalog { padding: 0 28px 28px; }
+.catalog h2 { margin: 0 0 12px; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.card {
+  border: 1px solid #2a3142;
+  border-radius: 12px;
+  padding: 12px;
+  background: var(--surface);
+  color: var(--text);
+  text-align: left;
+  min-height: 180px;
+}
+
+.card:hover,
+.card:focus { border-color: var(--accent); background: var(--surface-2); }
+
+.card h3 { margin: 0 0 8px; font-size: 19px; }
+.card .meta { color: var(--muted); font-size: 14px; margin: 0 0 8px; }
+.card .overview { color: #c6cfdd; font-size: 14px; }
+
+.details {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  width: min(650px, 90vw);
+  background: #131824;
+  border: 1px solid #36405a;
+  border-radius: 14px;
+  padding: 16px;
+}
+
+.details h3 { margin: 0 0 8px; }
+.details p { margin: 0 0 8px; }
+.details .details-actions { display: flex; gap: 10px; }
+.details button {
+  border: 1px solid #334059;
+  background: #1e2638;
+  color: var(--text);
+  border-radius: 8px;
+  padding: 8px 10px;
+}

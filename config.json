@@ -1,0 +1,8 @@
+{
+  "name": "DebridStreamMod",
+  "version": "1.0.0",
+  "description": "Streaming com Real-Debrid",
+  "url": "./index.html",
+  "icon": "icon.png",
+  "backgroundColor": "#000"
+}
