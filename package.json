@@ -1,9 +1,8 @@
 {
-  "name": "palasflix-simple",
+  "name": "DebridStreamMod",
   "version": "1.0.0",
-  "packageType": "app",
-  "appName": "PalasFlix",
-  "appPath": "index.html",
-  "serviceFile": "service.js",
-  "keys": ["Enter", "Return", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"]
+  "description": "Streaming com Real-Debrid",
+  "url": "./index.html",
+  "icon": "icon.png",
+  "backgroundColor": "#000"
 }
